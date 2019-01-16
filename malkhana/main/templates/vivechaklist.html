@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    
+    <h3>Vivechak List</h3>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <th>No</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Mobile</th>
+                <th>Aadhar Number</th>
+                <th>Pan Number</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+                {% for instance in object_list %}
+                    <tr>
+                        <td>{{ instance.pk }}</td>
+                        <td>{{ instance.name }}</td>
+                        <td>{{ instance.address }}</td>
+                        <td>{{ instance.mobile }}</td>
+                        <td>{{ instance.adharcard }}</td>
+                        <td>{{ instance.pancard }}</td>
+                        <td>
+                            <a href="{% url 'editvivechak' instance.pk %}" class="glyphicon glyphicon-pencil" style="color: blue" role="button"/>&nbsp;&nbsp;
+                            <a href="{% url 'deletevivechak' instance.pk %}" class="glyphicon glyphicon-remove" style="color: red" role="button"/>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+{% endblock %}

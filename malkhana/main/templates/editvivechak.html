@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+    <h3>Edit Vivechak</h3><br><br><br>
+
+    {% if error_message %}
+        <p class="text-danger"><strong>{{ error_message }}</strong></p>
+    {% endif %}
+
+    <form class="form form-horizontal form-row" action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form%}
+            <div class="col-sm-offset-3 col-sm-9">
+                <span class="text-danger small">{{ field.errors }}</span>
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-sm-offset-1 col-sm-2">{{ field.label_tag }}</label>
+                <div class="col-lg-8">{{ field }}</div>
+            </div>
+
+            <br>
+        {% endfor %}
+        <br>
+        <div class="form-group">
+                <button type="submit" name="save" class="btn btn-success col-sm-offset-3 col-sm-1">
+                    Save
+                </button>
+        </div>
+
+    </form>
+
+
+{% endblock %}

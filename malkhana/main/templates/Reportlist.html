@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    
+    <h3>Report List</h3>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <th>No</th>
+                <th>Date</th>
+                <th>Dhara</th>
+                <th>Crime No</th>
+                <th>Date Of Dakhila</th>
+                <th>By</th>
+                <th>Vivechak</th>
+                <th>Banam</th>
+                <th>Place</th>
+                <th>Product Name</th>
+                <th>Product Description</th>
+                <th>Rack No</th>
+                <th>Shelf No</th>
+                <th>Box No</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+                {% for instance in object_list %}
+                    <tr>
+                        <td>{{ instance.pk }}</td>
+                        <td>{{ instance.date }}</td>
+                        <td>{{ instance.dhara }}</td>
+                        <td>{{ instance.crime_no }}</td>
+                        <td>{{ instance.date_of_dakhila }}</td>
+                        <td>{{ instance.by }}</td>
+                        <td>{{ instance.vivechak }}</td>
+                        <td>{{ instance.banam }}</td>
+                        <td>{{ instance.place }}</td>
+                        <td>{{ instance.product_name }}</td>
+                        <td>{{ instance.product_description }}</td>
+                        <td>{{ instance.rack_no }}</td>
+                        <td>{{ instance.shelf_no }}</td>
+                        <td>{{ instance.box_no }}</td>
+
+                        <td>
+                            <a href="#" class="glyphicon glyphicon-pencil" style="color: blue" role="button"/>&nbsp;&nbsp;
+                            <a href="#" class="glyphicon glyphicon-remove" style="color: red" role="button"/>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+{% endblock %}

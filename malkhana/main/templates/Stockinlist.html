@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    
+    <h3>Report List</h3>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <th>No</th>
+                <th>Product Name</th>
+                <th>Entry Date And Time</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+                {% for instance in object_list %}
+                    <tr>
+                        <td>{{ instance.pk }}</td>
+                        <td>{{ instance.product_name }}</td>
+                        <td>{{ instance.entry_date_and_time }}</td>
+
+                        <td>
+                            <a href="#" class="glyphicon glyphicon-pencil" style="color: blue" role="button"/>&nbsp;&nbsp;
+                        </td>
+                    </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+{% endblock %}

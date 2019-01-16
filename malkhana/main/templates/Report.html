@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block body %}
+    
+    <h3>Add Report</h3><br><br><br>
+
+    {% if error_message %}
+        <p class="text-danger"><strong>{{ error_message }}</strong></p>
+    {% endif %}
+
+    <form class="form form-horizontal form-row" action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="col-sm-offset-3 col-sm-9">
+            <span class="text-danger small">{{ form.date.errors }}</span>
+        </div>
+        <div class="form-group row" >
+            <label class="control-label col-sm-offset-2 col-sm-2">{{ form.date.label_tag }}</label>
+            <label class='input-group col-sm-4 datepicker'>
+
+                {% render_field form.date class="form-control" %}
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+
+
+            </label>
+
+        </div>
+
+
+        <div class="col-sm-offset-3 col-sm-9">
+            <span class="text-danger small">{{ form.date_of_dakhila.errors }}</span>
+        </div>
+        <div class="form-group row">
+            <label class="control-label col-sm-offset-2 col-sm-2">{{ form.date_of_dakhila.label_tag }}</label>
+            <label class='input-group col-sm-4 datepicker'>
+
+                {% render_field form.date_of_dakhila class="form-control" %}
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+
+
+            </label>
+        </div>
+
+
+                <script type="text/javascript">
+                        $(function () {
+                            $('.datepicker').datetimepicker({
+                                viewMode: 'days',
+                                format: 'YYYY-MM-DD'
+                            });
+                        });
+                </script>
+
+
+        {% for field in form%}
+            {% if field != form.date and field != form.date_of_dakhila %}
+                <div class="col-sm-offset-3 col-sm-9">
+                    <span class="text-danger small">{{ field.errors }}</span>
+                </div>
+
+                <div class="form-group row">
+                    <label class="control-label col-sm-offset-1 col-sm-2">{{ field.label_tag }}</label>
+                    <div class="col-lg-8">{% render_field field class="form-control" %}</div>
+                </div>
+
+                <br>
+            {% endif %}
+        {% endfor %}
+        <br>
+        <div class="form-group">
+
+                <button type="submit" name="addanother" class="btn btn-success col-sm-offset-4 col-sm-2">
+                    Add another
+                </button>
+                <button type="submit" name="save" class="btn btn-success col-sm-offset-3 col-sm-1">
+                    Save
+                </button>
+        </div>
+
+
+            <div class="container">
+                <div class="row">
+                    <div class='col-sm-6'>
+                        <div class="form-group">
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+    </form>
+
+
+{% endblock %}

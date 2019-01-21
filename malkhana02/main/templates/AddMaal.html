@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block body %}
+
+    <h3> <strong><U>नया माल जोड़े </U></strong></h3>
+
+    <div style="margin-top: 70px;width: 100%;padding-left: 10%">
+
+        {% if error_message %}
+            <p class="text-danger"><strong>{{ error_message }}</strong></p>
+        {% endif %}
+
+        <form  class="" action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="form-group col-md-6 mb-0">
+                <strong>{{ form.fir|as_crispy_field }}</strong>
+            </div>
+            <div class="form-group col-md-6 mb-0">
+                <strong>{{ form.thana|as_crispy_field }}</strong>
+                </div>
+            <div class="form-group col-md-6">
+                <strong>{{ form.maal_type|as_crispy_field }}</strong>
+            </div>
+            <div class="form-group col-md-6">
+                <strong>{{ form.if_other|as_crispy_field }}</strong>
+            </div>
+            <div class="form-group col-md-6">
+                <strong>{{ form.photo|as_crispy_field }}</strong>
+            </div>
+            <div class="form-group col-md-6">
+                <strong>{{ form.seizure_date|as_crispy_field }}</strong>
+            </div>
+            <div class="form-group col-md-6">
+                <strong>{{ form.vivechak|as_crispy_field }}</strong>
+            </div>
+            <div class="form-row col-5">
+                <div class="form-group col-md-8">
+                    <strong>{{ form.under_section|as_crispy_field }}</strong>
+                </div>
+                <div class="form-group col-md-4">
+                    <strong>{{ form.act|as_crispy_field }}</strong>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <strong>{{ form.description|as_crispy_field }}</strong>
+            </div>
+
+            <div class="form-group col-md-6">
+                <strong>{{ form.place|as_crispy_field }}</strong>
+            </div>
+            <div class="form-group col-md-6">
+                <strong>{{ form.status|as_crispy_field }}</strong>
+            </div>
+            <div class="form-group col-md-6">
+                <strong>{{ form.court|as_crispy_field }}</strong>
+            </div>
+            <div class="form-group col-md-6">
+                <strong>{{ form.date_of_disposal|as_crispy_field }}</strong>
+            </div>
+            <br><br>
+            <button type="submit" class="btn btn-success col-2 offset-4" > जमा करें </button>
+
+        </form>
+
+    </div>
+
+    <script>
+        $('#seizuredate').datepicker({
+            uiLibrary: 'bootstrap4',
+            format: 'yyyy-mm-dd',
+        });
+
+
+        $('#disposaldate').datepicker({
+            uiLibrary: 'bootstrap4',
+            format: 'yyyy-mm-dd',
+        });
+
+        let select = document.getElementById('id_maal_type');
+        let if_other = document.getElementById('div_id_if_other');
+        if_other.setAttribute('style', 'display: none');
+        select.onclick = function(){
+            let str = select.options[select.selectedIndex].value;
+            if(str == 'अन्य'){
+                if_other.style.display = 'block';
+            }else{
+                if_other.style.display = 'none';
+            }
+        };
+    </script>
+
+{% endblock %}

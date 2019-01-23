@@ -25,13 +25,19 @@ act_choices = (
 
 
 class Vivechak(models.Model):
+    pradesh = models.CharField(max_length=100, blank=False)
+    jila = models.CharField(max_length=100, blank=False)
+    vibhag = models.CharField(max_length=100, blank=False)
+    unit = models.CharField(max_length=100, blank=False)
+    subunit = models.CharField(max_length=100, blank=False)
+    pno = models.CharField(max_length=100, blank=False)
     name = models.CharField(max_length=100, blank=False)
-    address = models.CharField(max_length=100, blank=False)
-    mobile = models.CharField(max_length=20, validators=[RegexValidator(regex='^(\d{10})$',
-                                                                        message='Enter 10 digits number only.')])
-    adharcard = models.CharField(max_length=20, validators=[RegexValidator(regex='^(\d{12})$',
+    gender = models.CharField(max_length=100, blank=False)
+    post = models.CharField(max_length=100, blank=False)
+    mobile = models.CharField(max_length=100, blank=False)
+    adharcard = models.CharField(max_length=20, blank=True, validators=[RegexValidator(regex='^(\d{12})$',
                                                                            message='Enter 12 digits number only.')])
-    pancard = models.CharField(max_length=20, validators=[RegexValidator(regex='^(.{10})$',
+    pancard = models.CharField(max_length=20, blank=True, validators=[RegexValidator(regex='^(.{10})$',
                                                                          message='Length should be 10.')])
 
     def __str__(self):
